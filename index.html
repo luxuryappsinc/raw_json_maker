@@ -2,28 +2,38 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Form Page</title>
+  <title>Single Page Form</title>
 
   <style>
     :root {
       --bg: #ffffff;
       --text: #000000;
+      --card: #f4f4f4;
     }
 
     body.dark {
       --bg: #121212;
       --text: #ffffff;
+      --card: rgba(255,255,255,0.1);
     }
 
     body {
-      background-color: var(--bg);
+      background: var(--bg);
       color: var(--text);
       font-family: Arial, sans-serif;
+      padding: 20px;
       transition: 0.3s;
     }
 
-    input {
-      padding: 6px;
+    .hidden {
+      display: none;
+    }
+
+    pre {
+      background: var(--card);
+      padding: 15px;
+      border-radius: 10px;
+      overflow-x: auto;
     }
 
     button {
@@ -39,22 +49,37 @@
 </head>
 <body>
 
+  <!-- THEME BUTTON -->
   <button class="toggle-btn" onclick="toggleTheme()">Toggle Theme</button>
 
-  <h2>Simple Form</h2>
+  <!-- FORM SECTION -->
+  <div id="formSection">
+    <h2>Simple Form</h2>
 
-  <form id="myForm">
-    <label>Name:</label><br>
-    <input type="text" id="name" required><br><br>
+    <form id="myForm">
+      <label>Name:</label><br>
+      <input type="text" id="name" required><br><br>
 
-    <label>Email:</label><br>
-    <input type="text" id="email" required><br><br>
+      <label>Email:</label><br>
+      <input type="text" id="email" required><br><br>
 
-    <button type="submit">Submit</button>
-    <button type="reset">Reset</button>
-  </form>
+      <button type="submit">Submit</button>
+      <button type="reset">Reset</button>
+    </form>
+  </div>
+
+  <!-- RESULT SECTION -->
+  <div id="resultSection" class="hidden">
+    <h2>Submitted Data (JSON)</h2>
+    <pre id="output"></pre>
+    <br>
+    <button onclick="goBack()">Back</button>
+  </div>
 
   <script>
+    const formSection = document.getElementById("formSection");
+    const resultSection = document.getElementById("resultSection");
+
     // Load saved theme
     if (localStorage.getItem("theme") === "dark") {
       document.body.classList.add("dark");
@@ -63,7 +88,6 @@
     function toggleTheme() {
       document.body.classList.toggle("dark");
 
-      // Save preference
       if (document.body.classList.contains("dark")) {
         localStorage.setItem("theme", "dark");
       } else {
@@ -79,11 +103,17 @@
         email: document.getElementById("email").value
       };
 
-      const jsonData = JSON.stringify(data);
-      const encoded = encodeURIComponent(jsonData);
+      document.getElementById("output").textContent =
+        JSON.stringify(data, null, 2);
 
-      window.location.href = "result.html?data=" + encoded;
+      formSection.classList.add("hidden");
+      resultSection.classList.remove("hidden");
     });
+
+    function goBack() {
+      resultSection.classList.add("hidden");
+      formSection.classList.remove("hidden");
+    }
   </script>
 
 </body>
