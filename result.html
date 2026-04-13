@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Result Page</title>
+</head>
+<body>
+
+  <h2>Submitted Data (Raw JSON)</h2>
+
+  <pre id="output"></pre>
+
+  <script>
+    // Get data from URL
+    const params = new URLSearchParams(window.location.search);
+    const data = params.get("data");
+
+    if (data) {
+      const decoded = decodeURIComponent(data);
+      document.getElementById("output").textContent = decoded;
+    } else {
+      document.getElementById("output").textContent = "No data received";
+    }
+  </script>
+
+</body>
+</html>
