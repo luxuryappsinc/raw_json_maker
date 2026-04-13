@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Form Page</title>
+</head>
+<body>
+
+  <h2>Simple Form</h2>
+
+  <form id="myForm">
+    <label>Name:</label><br>
+    <input type="text" id="name" required><br><br>
+
+    <label>Email:</label><br>
+    <input type="text" id="email" required><br><br>
+
+    <button type="submit">Submit</button>
+    <button type="reset">Reset</button>
+  </form>
+
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value
+      };
+
+      // Convert to JSON string
+      const jsonData = JSON.stringify(data);
+
+      // Send data via URL
+      const encoded = encodeURIComponent(jsonData);
+
+      // Redirect to result page
+      window.location.href = "result.html?data=" + encoded;
+    });
+  </script>
+
+</body>
+</html>
