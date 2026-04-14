@@ -266,29 +266,40 @@
         localStorage.setItem("theme", "light");
       }
     }
-
+// submit
     document.getElementById("myForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-    const dynamicInputs = document.querySelectorAll("#dynamicFields input");
-      
-      const extraFields = [];
-      dynamicInputs.forEach(input => {
-        extraFields.push(input.value);
-      });
+  e.preventDefault();
 
-      const data = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        hospitals: extraFields
-      };
+  // Get all hospital blocks
+  const hospitalBlocks = document.querySelectorAll("#dynamicFields .sub-menu");
 
-      jsonData = JSON.stringify(data, null, 2);
+  const hospitals = [];
 
-      document.getElementById("output").textContent = jsonData;
+  hospitalBlocks.forEach((block) => {
+    const hospital = {
+      name: block.querySelector('[name^="hospital"][name$="_name"]').value,
+      address: block.querySelector('[name^="hospital"][name$="_address"]').value,
+      hotline: block.querySelector('[name^="hospital"][name$="_hotline"]').value,
+      contact: block.querySelector('[name^="hospital"][name$="_contact"]').value
+    };
 
-      formSection.classList.add("hidden");
-      resultSection.classList.remove("hidden");
-    });
+    hospitals.push(hospital);
+  });
+
+  // Main form data
+  const data = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    hospitals: hospitals
+  };
+
+  const jsonData = JSON.stringify(data, null, 2);
+
+  document.getElementById("output").textContent = jsonData;
+
+  formSection.classList.add("hidden");
+  resultSection.classList.remove("hidden");
+});
 
     function goBack() {
       resultSection.classList.add("hidden");
