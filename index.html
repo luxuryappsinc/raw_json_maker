@@ -73,12 +73,18 @@
     <h2>Submitted Data (JSON)</h2>
     <pre id="output"></pre>
     <br>
+
+    <!-- NEW BUTTONS -->
+    <button onclick="copyToClipboard()">Copy JSON</button>
+    <button onclick="downloadJSON()">Download JSON</button>
     <button onclick="goBack()">Back</button>
   </div>
 
   <script>
     const formSection = document.getElementById("formSection");
     const resultSection = document.getElementById("resultSection");
+
+    let jsonData = "";
 
     // Load saved theme
     if (localStorage.getItem("theme") === "dark") {
@@ -103,8 +109,9 @@
         email: document.getElementById("email").value
       };
 
-      document.getElementById("output").textContent =
-        JSON.stringify(data, null, 2);
+      jsonData = JSON.stringify(data, null, 2);
+
+      document.getElementById("output").textContent = jsonData;
 
       formSection.classList.add("hidden");
       resultSection.classList.remove("hidden");
@@ -113,6 +120,26 @@
     function goBack() {
       resultSection.classList.add("hidden");
       formSection.classList.remove("hidden");
+    }
+
+    // COPY FUNCTION
+    function copyToClipboard() {
+      navigator.clipboard.writeText(jsonData)
+        .then(() => alert("Copied to clipboard!"))
+        .catch(() => alert("Failed to copy"));
+    }
+
+    // DOWNLOAD FUNCTION
+    function downloadJSON() {
+      const blob = new Blob([jsonData], { type: "application/json" });
+      const url = URL.createObjectURL(blob);
+
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "data.json";
+      a.click();
+
+      URL.revokeObjectURL(url);
     }
   </script>
 
