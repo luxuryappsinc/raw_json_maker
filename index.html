@@ -132,67 +132,66 @@
       <button type="button" onclick="addField()">+ Add Field</button><br>
 
       <label>এ্যাম্বুলেন্স:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
 
       <label>রক্ত দাতা:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>ডাক্তার:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>ফায়ার সার্ভিস:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>কার সার্ভিস:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>বাস সার্ভিস:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>দর্শনীয় স্থান:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>সিটিজেন চার্টার:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>কৃষি কর্মকর্তা:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>স্বাস্থ্য কর্মকর্তা:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>উকিল:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>সরকারি দপ্তর:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>ইউনিয়ন সমূহ:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>ভোটকেন্দ্র:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>কুরিয়ার সার্ভিস:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>জনসংখ্যা:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>পুলিশ:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>ব্যাংক:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>বিখ্যাত ব্যাক্তিগন:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>শিক্ষা প্রতিষ্ঠান সমূহ:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>পত্রিকা ও সাময়িকী:</label><br>
-      <input type="text" id="upazila_name" required><br><br>
+      
 
       <label>Email:</label><br>
       <input type="text" id="email" required><br><br>
@@ -234,13 +233,13 @@
     <div class="menu-box">
     <div class="sub-menu">
     <label>হাসপাতালের নাম:</label><br>
-    <input type="text" name="hospital_name" placeholder="হাসপাতালের নাম" required><br>
+    <input type="text" name="hospital${count}_name" placeholder="হাসপাতালের নাম" required><br>
     <label>ঠিকানা:</label><br>
-    <input type="text" name="hospital_address" placeholder="ঠিকানা" required><br>
+    <input type="text" name="hospital${count}_address" placeholder="ঠিকানা" required><br>
     <label>হটলাইন:</label><br>
-    <input type="text" name="hospital_hotline" placeholder="হটলাইন" required><br>
+    <input type="text" name="hospital${count}_hotline" placeholder="হটলাইন" required><br>
     <label>যোগাযোগ:</label><br>
-    <input type="text" name="hospital_contact" placeholder="যোগাযোগ" required><br>
+    <input type="text" name="hospital${count}_contact" placeholder="যোগাযোগ" required><br>
     <button type="button" onclick="removeField(this)">Remove</button>
     </div>
     </div>
@@ -270,10 +269,17 @@
 
     document.getElementById("myForm").addEventListener("submit", function(e) {
       e.preventDefault();
+    const dynamicInputs = document.querySelectorAll("#dynamicFields input");
+      
+      const extraFields = [];
+      dynamicInputs.forEach(input => {
+        extraFields.push(input.value);
+      });
 
       const data = {
         name: document.getElementById("name").value,
-        email: document.getElementById("email").value
+        email: document.getElementById("email").value,
+        hospitals: extraFields
       };
 
       jsonData = JSON.stringify(data, null, 2);
