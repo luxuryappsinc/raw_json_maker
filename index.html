@@ -44,14 +44,14 @@
     }
 
     input[type=text] {
-      width: 100%;
+      width: 50%;
       padding: 12px;
       margin: 10px 0;
       box-sizing: border-box;
     }
 
     textarea {
-  width: 100%;
+  width: 50%;
   height: 150px;
   padding: 12px;
   box-sizing: border-box;
@@ -71,7 +71,7 @@
     }
 
     .menu-box {
-      border: 2px solid black;
+      border: 1px solid black;
       border-radius: 8px;
       padding: 5px;
     }
@@ -231,8 +231,19 @@
     div.style.marginBottom = "10px";
 
     div.innerHTML = `
-      <input type="text" name="field${count}" placeholder="Field ${count}" required>
-      <button type="button" onclick="removeField(this)">Remove</button>
+    <div class="menu-box">
+    <div class="sub-menu">
+    <label>হাসপাতালের নাম:</label><br>
+    <input type="text" name="hospital_name" placeholder="হাসপাতালের নাম" required><br>
+    <label>ঠিকানা:</label><br>
+    <input type="text" name="hospital_address" placeholder="ঠিকানা" required><br>
+    <label>হটলাইন:</label><br>
+    <input type="text" name="hospital_hotline" placeholder="হটলাইন" required><br>
+    <label>যোগাযোগ:</label><br>
+    <input type="text" name="hospital_contact" placeholder="যোগাযোগ" required><br>
+    <button type="button" onclick="removeField(this)">Remove</button>
+    </div>
+    </div>
     `;
 
     container.appendChild(div);
