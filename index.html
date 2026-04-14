@@ -129,6 +129,8 @@
 
       <label>হাসপাতাল:</label><br>
       <input type="text" id="upazila_name" required><br><br>
+      <div id="dynamicFields"></div>
+      <button type="button" onclick="addField()">+ Add Field</button>
 
       <label>এ্যাম্বুলেন্স:</label><br>
       <input type="text" id="upazila_name" required><br><br>
@@ -218,6 +220,28 @@
     const resultSection = document.getElementById("resultSection");
 
     let jsonData = "";
+    let count = 0;
+
+    // add more textfield
+  function addField() {
+    count++;
+
+    const container = document.getElementById("dynamicFields");
+
+    const div = document.createElement("div");
+    div.style.marginBottom = "10px";
+
+    div.innerHTML = `
+      <input type="text" name="field${count}" placeholder="Field ${count}" required>
+      <button type="button" onclick="removeField(this)">Remove</button>
+    `;
+
+    container.appendChild(div);
+  }
+
+  function removeField(btn) {
+    btn.parentElement.remove();
+  }
 
     // Load saved theme
     if (localStorage.getItem("theme") === "dark") {
