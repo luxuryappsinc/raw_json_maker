@@ -4,7 +4,10 @@
 
     <button onclick="generateNumbers()">Generate 4 Numbers</button>
 
-  <div id="output"></div>
+  <p>Output 1: <span id="output1"></span></p>
+  <p>Output 2: <span id="output2"></span></p>
+  <p>Output 3: <span id="output3"></span></p>
+  <p>Output 4: <span id="output4"></span></p>
 
     <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
   <iframe src="https://example.com"></iframe>
@@ -18,7 +21,6 @@
     const generatedNumbers = new Set();
 
     function generateRandom10Digit() {
-      // ensures 10-digit (starts from 1,000,000,000)
       return Math.floor(1000000000 + Math.random() * 9000000000);
     }
 
@@ -34,8 +36,11 @@
         }
       }
 
-      document.getElementById("output").innerHTML =
-        results.map(n => `<p>${n}</p>`).join("");
+      // assign to separate outputs
+      document.getElementById("output1").textContent = results[0];
+      document.getElementById("output2").textContent = results[1];
+      document.getElementById("output3").textContent = results[2];
+      document.getElementById("output4").textContent = results[3];
     }
   </script>
 </html>
