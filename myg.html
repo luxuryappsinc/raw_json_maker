@@ -48,23 +48,22 @@
   </style>
 </head>
   <body>
-
-    <button onclick="generateNumbers()">Generate 4 Numbers</button>
-
-  <p>Output 1: <span id="output1"></span></p>
-  <p>Output 2: <span id="output2"></span></p>
-  <p>Output 3: <span id="output3"></span></p>
-  <p>Output 4: <span id="output4"></span></p>
+    <button onclick="generateNumbers()">Generate 4 Numbers</button><br>
+    
+    <p>Output 1: <span id="output1"></span></p>
+    <p>Output 2: <span id="output2"></span></p>
+    <p>Output 3: <span id="output3"></span></p>
+    <p>Output 4: <span id="output4"></span></p>
 
     <div class="frame-container">
     <div class="controls">
       <button onclick="zoom(this, 0.1)">+</button>
       <button onclick="zoom(this, -0.1)">-</button>
     </div>
-    <div class="iframe-wrapper" data-scale="1">
+      <div class="iframe-wrapper" data-scale="1">
       <iframe src="https://example.com"></iframe>
+      </div>
     </div>
-  </div>
 
   <div class="frame-container">
     <div class="controls">
@@ -117,10 +116,10 @@
       }
 
       // assign to separate outputs
-      document.getElementById("output1").textContent = results[0];
-      document.getElementById("output2").textContent = results[1];
-      document.getElementById("output3").textContent = results[2];
-      document.getElementById("output4").textContent = results[3];
+      document.getElementById("output1").textContent = "https://apostille.mygov.bd/application-details/" + results[0];
+      document.getElementById("output2").textContent = "https://apostille.mygov.bd/application-details/" + results[1];
+      document.getElementById("output3").textContent = "https://apostille.mygov.bd/application-details/" + results[2];
+      document.getElementById("output4").textContent = "https://apostille.mygov.bd/application-details/" + results[3];
     }
     function zoom(btn, change) {
       const wrapper = btn.parentElement.nextElementSibling;
