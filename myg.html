@@ -61,7 +61,7 @@
       <button onclick="zoom(this, -0.1)">-</button>
     </div>
       <div class="iframe-wrapper" data-scale="1">
-      <iframe src="https://example.com"></iframe>
+      <iframe id="myFrame1"></iframe>
       </div>
     </div>
 
@@ -71,7 +71,7 @@
       <button onclick="zoom(this, -0.1)">-</button>
     </div>
     <div class="iframe-wrapper" data-scale="1">
-      <iframe src="https://example.org"></iframe>
+      <iframe id="myFrame2"></iframe>
     </div>
   </div>
 
@@ -81,7 +81,7 @@
       <button onclick="zoom(this, -0.1)">-</button>
     </div>
     <div class="iframe-wrapper" data-scale="1">
-      <iframe src="https://example.net"></iframe>
+      <iframe id="myFrame3"></iframe>
     </div>
   </div>
 
@@ -91,7 +91,7 @@
       <button onclick="zoom(this, -0.1)">-</button>
     </div>
     <div class="iframe-wrapper" data-scale="1">
-      <iframe src="https://example.edu"></iframe>
+      <iframe id="myFrame4"></iframe>
     </div>
   </div>
 
@@ -120,6 +120,11 @@
       document.getElementById("output2").textContent = "https://apostille.mygov.bd/application-details/" + results[1];
       document.getElementById("output3").textContent = "https://apostille.mygov.bd/application-details/" + results[2];
       document.getElementById("output4").textContent = "https://apostille.mygov.bd/application-details/" + results[3];
+
+      document.getElementById("myFrame1").src = "https://apostille.mygov.bd/application-details/" + results[0];
+      document.getElementById("myFrame2").src = "https://apostille.mygov.bd/application-details/" + results[1];
+      document.getElementById("myFrame3").src = "https://apostille.mygov.bd/application-details/" + results[2];
+      document.getElementById("myFrame4").src = "https://apostille.mygov.bd/application-details/" + results[3];
     }
     function zoom(btn, change) {
       const wrapper = btn.parentElement.nextElementSibling;
