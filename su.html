@@ -70,7 +70,35 @@
 </head>
 <body>
 
-  <iframe id="https://degree-verification.southern.ac.bd/verify?id=030-19-21"></iframe>
+  <h1 id="display">000-00-00</h1>
+  <button onclick="generate()">Next</button>
+  <iframe id="myFrame0"></iframe>
+
+  <script>
+    let counter = 0;
+
+    function formatNumber(num) {
+      let str = num.toString().padStart(7, '0'); // total digits: 7
+
+      let part1 = str.substring(0, 3);
+      let part2 = str.substring(3, 5);
+      let part3 = str.substring(5, 7);
+
+      return `${part1}-${part2}-${part3}`;
+    }
+
+    function generate() {
+      if (counter > 9999999) {
+        alert("Reached the maximum: 999-99-99");
+        return;
+      }
+
+      document.getElementById("myFrame0").src = "https://degree-verification.southern.ac.bd/verify?id="+counter;
+      document.getElementById("display").innerText = formatNumber(counter);
+      counter++;
+      
+    }
+  </script> why it's not working
 
 </body>
 </html>
