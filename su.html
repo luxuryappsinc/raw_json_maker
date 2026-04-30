@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Number Generator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      height: 100vh;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      background: #f5f5f5;
+    }
+
+    h1 {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 12px 25px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      background: #007bff;
+      color: white;
+      border-radius: 8px;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="display">000-00-00</h1>
+  <button onclick="generate()">Next</button>
+
+  <script>
+    let counter = 0;
+
+    function formatNumber(num) {
+      let str = num.toString().padStart(7, '0'); // total digits: 7
+
+      let part1 = str.substring(0, 3);
+      let part2 = str.substring(3, 5);
+      let part3 = str.substring(5, 7);
+
+      return `${part1}-${part2}-${part3}`;
+    }
+
+    function generate() {
+      if (counter > 9999999) {
+        alert("Reached the maximum: 999-99-99");
+        return;
+      }
+
+      document.getElementById("display").innerText = formatNumber(counter);
+      counter++;
+    }
+  </script>
+
+</body>
+</html>
