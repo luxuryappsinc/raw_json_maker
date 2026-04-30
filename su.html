@@ -98,6 +98,9 @@ function generate(step) {
 
   // increase by step
   counter += step;
+
+document.getElementById("myFrame0").src = "abcd" + counter;
+document.getElementById("display").innerText = formatNumber(counter);
 }
 </script>
 
