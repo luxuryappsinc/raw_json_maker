@@ -71,34 +71,35 @@
 <body>
 
   <h1 id="display">000-00-00</h1>
-  <button onclick="generate()">Next</button>
+  <button onclick="generate(1)">+1</button>
+<button onclick="generate(10)">+10</button>
+<button onclick="generate(100)">+100</button>
   <iframe id="myFrame0"></iframe>
 
   <script>
-    let counter = 0;
+let counter = 0;
 
-    function formatNumber(num) {
-      let str = num.toString().padStart(7, '0'); // total digits: 7
+function formatNumber(num) {
+  let str = num.toString().padStart(7, '0');
+  return `${str.substring(0,3)}-${str.substring(3,5)}-${str.substring(5,7)}`;
+}
 
-      let part1 = str.substring(0, 3);
-      let part2 = str.substring(3, 5);
-      let part3 = str.substring(5, 7);
+function generate(step) {
+  if (counter > 9999999) {
+    alert("Reached the maximum: 999-99-99");
+    return;
+  }
 
-      return `${part1}-${part2}-${part3}`;
-    }
+  // update iframe
+  document.getElementById("myFrame0").src = "https://degree-verification.southern.ac.bd/verify?id=" + counter;
 
-    function generate() {
-      if (counter > 9999999) {
-        alert("Reached the maximum: 999-99-99");
-        return;
-      }
+  // update display
+  document.getElementById("display").innerText = formatNumber(counter);
 
-      document.getElementById("myFrame0").src = "https://degree-verification.southern.ac.bd/verify?id="+counter;
-      document.getElementById("display").innerText = formatNumber(counter);
-      counter++;
-      
-    }
-  </script> why it's not working
+  // increase by step
+  counter += step;
+}
+</script>
 
 </body>
 </html>
