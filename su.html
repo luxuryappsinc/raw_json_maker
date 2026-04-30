@@ -76,7 +76,9 @@
 <button onclick="generate(100)">+100</button>
   <iframe id="myFrame0"></iframe>
 
-  <script>
+  <iframe id="myFrame0" width="600" height="400"></iframe>
+
+<script>
 let counter = 0;
 
 function formatNumber(num) {
@@ -90,19 +92,15 @@ function generate(step) {
     return;
   }
 
-  // update iframe
-  document.getElementById("myFrame0").src = "https://degree-verification.southern.ac.bd/verify?id=" + counter;
+  let formatted = formatNumber(counter);
 
-  // update display
-  document.getElementById("display").innerText = formatNumber(counter);
+  document.getElementById("myFrame0").src =
+    "https://example.com/" + formatted;
 
-  // increase by step
+  document.getElementById("display").innerText = formatted;
+
   counter += step;
-
-document.getElementById("myFrame0").src = "abcd" + counter;
-document.getElementById("display").innerText = formatNumber(counter);
 }
 </script>
-
 </body>
 </html>
