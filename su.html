@@ -70,27 +70,7 @@
 </head>
 <body>
 
-  <h1 id="display">000-00-00</h1>
-  <button onclick="generate()">Next</button><br>
-  <iframe id="https://degree-verification.southern.ac.bd/verify?id="></iframe>
-
-  <script>
-    function generate() {
-  if (counter > 9999999) {
-    alert("Reached the maximum: 999-99-99");
-    return;
-  }
-
-  for (let i = 0; i < 6; i++) {
-    document.getElementById("myFrame" + i).src =
-      "https://degree-verification.southern.ac.bd/verify?id=" + formatNumber(counter + i);
-  }
-
-  document.getElementById("display").innerText = formatNumber(counter);
-
-  counter += 6; // move forward properly
-}
-  </script>
+  <iframe id="https://degree-verification.southern.ac.bd/verify?id=030-19-20"></iframe>
 
 </body>
 </html>
