@@ -88,34 +88,21 @@
   <p id="myFrame5">link5:</p>
 
   <script>
-    let counter = 0;
-
-    function formatNumber(num) {
-      let str = num.toString().padStart(7, '0'); // total digits: 7
-
-      let part1 = str.substring(0, 3);
-      let part2 = str.substring(3, 5);
-      let part3 = str.substring(5, 7);
-
-      return `${part1}-${part2}-${part3}`;
-    }
-
     function generate() {
-      if (counter > 9999999) {
-        alert("Reached the maximum: 999-99-99");
-        return;
-      }
+  if (counter > 9999999) {
+    alert("Reached the maximum: 999-99-99");
+    return;
+  }
 
-      document.getElementById("myFrame0").src = "https://degree-verification.southern.ac.bd/verify?id="+counter+0;
-      document.getElementById("myFrame1").src = "https://degree-verification.southern.ac.bd/verify?id="+counter+1;
-      document.getElementById("myFrame2").src = "https://degree-verification.southern.ac.bd/verify?id="+counter+2;
-      document.getElementById("myFrame3").src = "https://degree-verification.southern.ac.bd/verify?id="+counter+3;
-      document.getElementById("myFrame4").src = "https://degree-verification.southern.ac.bd/verify?id="+counter+4;
-      document.getElementById("myFrame5").src = "https://degree-verification.southern.ac.bd/verify?id="+counter+5;
-      document.getElementById("display").innerText = formatNumber(counter);
-      counter++;
-      
-    }
+  for (let i = 0; i < 6; i++) {
+    document.getElementById("myFrame" + i).src =
+      "https://example.com/" + formatNumber(counter + i);
+  }
+
+  document.getElementById("display").innerText = formatNumber(counter);
+
+  counter += 6; // move forward properly
+}
   </script>
 
 </body>
