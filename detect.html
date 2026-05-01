@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Checker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .box {
+      background: white;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+      width: 400px;
+      text-align: center;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 8px;
+      background: #007bff;
+      color: white;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #0056b3;
+    }
+
+    .result {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="box">
+  <h2>Product Checker</h2>
+  
+  <input type="text" id="urlInput" placeholder="Enter product URL">
+  
+  <button onclick="runCheck()">Check</button>
+  
+  <div class="result" id="result"></div>
+</div>
+
+<script>
+async function checkProduct(url) {
+  try {
+    const res = await fetch(url);
+
+    if (res.status === 404) {
+      return "NOT_FOUND";
+    }
+
+    const text = await res.text();
+
+    if (text.toLowerCase().includes("product not found")) {
+      return "NOT_FOUND";
+    }
+
+    if (!text.includes("<h1")) {
+      return "NOT_FOUND";
+    }
+
+    return "FOUND";
+
+  } catch (err) {
+    return "ERROR (maybe CORS blocked)";
+  }
+}
+
+async function runCheck() {
+  const url = document.getElementById("urlInput").value;
+  const resultBox = document.getElementById("result");
+
+  resultBox.innerText = "Checking...";
+
+  const result = await checkProduct(url);
+
+  resultBox.innerText = result;
+}
+</script>
+
+</body>
+</html>
