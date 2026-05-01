@@ -72,7 +72,7 @@ async function checkProduct(url) {
 
     const text = await res.text();
 
-    if (text.toLowerCase().includes("product not found")) {
+    if (text.toLowerCase().includes("আপনার আবেদন নম্বর দিয়ে, অ্যাপোস্টিলটি অ্যাপোস্টিল সার্ভিস ডিরেক্টরি থেকে খুঁজুন।")) {
       return "NOT_FOUND";
     }
 
