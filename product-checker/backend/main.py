@@ -2,6 +2,11 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import requests
 from bs4 import BeautifulSoup
+import os
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run("main:app", host="0.0.0.0", port=int(os.environ.get("PORT", 10000)))
 
 app = FastAPI()
 
